@@ -4,7 +4,6 @@ import ElementSelector from "./components/ElementSelector";
 import TransformSelector from "./components/TransformSelector";
 import Canvas from "./components/Canvas";
 import { CanvasContainer, Container, MainContainer, Title } from "./styles";
-import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
 
 const initialShapes = [
   {
@@ -39,11 +38,18 @@ const initialShapes = [
   },
 ];
 
+const initialLines = [
+  {
+    id: 0,
+    from: 100,
+    to: 102,
+  },
+];
+
 const MainScreen = () => {
   const [activeTransform, setActiveTransform] = useState(transforms.BEND);
   const [renderShapes, setRenderShapes] = useState(initialShapes);
-
-  console.log("rendershapes is ", renderShapes);
+  const [renderLines, setRenderLines] = useState(initialLines);
 
   const bendShape = (id) => {
     const newShapes = JSON.parse(JSON.stringify(renderShapes));
@@ -51,27 +57,22 @@ const MainScreen = () => {
     console.log(shape.type);
     switch (shape.type) {
       case shapes.SQUARE: {
-        console.log("Square");
         shape.type = shapes.RECTANGLE;
         break;
       }
       case shapes.RECTANGLE: {
-        console.log("Rectangle");
         shape.type = shapes.TRIANGLE;
         break;
       }
       case shapes.TRIANGLE: {
-        console.log("Triangle");
         shape.type = shapes.SQUARE;
         break;
       }
       case shapes.CIRCLE: {
-        console.log("Circle");
         shape.type = shapes.OVAL;
         break;
       }
       case shapes.OVAL: {
-        console.log("Oval");
         shape.type = shapes.CIRCLE;
         break;
       }
@@ -109,7 +110,29 @@ const MainScreen = () => {
     setRenderShapes(newShapes);
   };
 
-  const blendShape = (id) => {};
+  const blendShape = (id) => {
+    const shape = renderShapes.find((item) => item.id == id);
+    const sorted = [...renderShapes];
+    sorted.sort((a, b) => {
+      const distA = Math.sqrt(
+        Math.pow(a.x - shape.x, 2) + Math.pow(a.y - shape.y, 2)
+      );
+      const distB = Math.sqrt(
+        Math.pow(b.x - shape.x, 2) + Math.pow(b.y - shape.y, 2)
+      );
+      return distA - distB;
+    });
+    const closest = sorted[1];
+    const newLines = [
+      ...renderLines,
+      {
+        id: Math.floor(Math.random() * 100000),
+        from: shape.id,
+        to: closest.id,
+      },
+    ];
+    setRenderLines(newLines);
+  };
 
   return (
     <Container>
@@ -123,6 +146,7 @@ const MainScreen = () => {
         <CanvasContainer>
           <Canvas
             renderShapes={renderShapes}
+            renderLines={renderLines}
             activeTransform={activeTransform}
             bendShape={bendShape}
             breakShape={breakShape}

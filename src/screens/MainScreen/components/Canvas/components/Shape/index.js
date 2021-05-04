@@ -14,7 +14,7 @@ const Shape = ({
 }) => {
   const [bent, setBent] = useState(false);
   return (
-    <Container x={x} y={y}>
+    <Container className={`${id}`} x={x} y={y}>
       {
         {
           [shapes.SQUARE]: (
@@ -32,6 +32,9 @@ const Shape = ({
                     break;
                   case transforms.BREAK:
                     breakShape(id);
+                    break;
+                  case transforms.BLEND:
+                    blendShape(id);
                     break;
                 }
               }}
@@ -53,6 +56,9 @@ const Shape = ({
                   case transforms.BREAK:
                     breakShape(id);
                     break;
+                  case transforms.BLEND:
+                    blendShape(id);
+                    break;
                 }
               }}
             />
@@ -73,6 +79,9 @@ const Shape = ({
                   case transforms.BREAK:
                     breakShape(id);
                     break;
+                  case transforms.BLEND:
+                    blendShape(id);
+                    break;
                 }
               }}
             />
@@ -92,6 +101,9 @@ const Shape = ({
                   case transforms.BREAK:
                     breakShape(id);
                     break;
+                  case transforms.BLEND:
+                    blendShape(id);
+                    break;
                 }
               }}
             />
@@ -110,6 +122,9 @@ const Shape = ({
                     break;
                   case transforms.BREAK:
                     breakShape(id);
+                    break;
+                  case transforms.BLEND:
+                    blendShape(id);
                     break;
                 }
               }}

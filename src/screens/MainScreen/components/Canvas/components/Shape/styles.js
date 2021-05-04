@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   cursor: pointer;
   position: absolute;
+  z-index: 100;
   left: ${({ x }) => `${x}px`};
   top: ${({ y }) => `${y}px`};
 `;
 
 export const Square = styled.div`
+  z-index: 100;
   transition: all 0.5s;
   width: ${({ width }) => width}px;
   height: 50px;
@@ -16,6 +18,7 @@ export const Square = styled.div`
 `;
 
 export const Triangle = styled.div`
+  z-index: 1000;
   width: ${({ bent }) => (!bent ? 0 : 50)}px;
   height: ${({ bent }) => (!bent ? 0 : 50)}px;
   border-left: ${({ bent }) => (!bent ? "30px solid transparent" : "none")};
@@ -26,6 +29,7 @@ export const Triangle = styled.div`
 `;
 
 export const Rectangle = styled.div`
+  z-index: 1000;
   width: ${({ bent }) => (bent ? 0 : 70)}px;
   height: ${({ bent }) => (bent ? 0 : 50)}px;
   border-left: ${({ bent }) => (bent ? "30px solid transparent" : "none")};
