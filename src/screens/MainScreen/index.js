@@ -88,7 +88,7 @@ const MainScreen = () => {
       newShape.x += width + 5 + Math.floor(Math.random() * 10);
     }
 
-    if (shape.y >= 1000 - height) {
+    if (shape.y >= 700 - height) {
       newShape.y -= Math.floor(Math.random() * 10);
     } else {
       newShape.y += Math.floor(Math.random() * 10);
@@ -126,7 +126,7 @@ const MainScreen = () => {
       id: uuidv4(),
       type,
       x: Math.floor(Math.random() * 1420),
-      y: Math.floor(Math.random() * 920),
+      y: Math.floor(Math.random() * 620),
     };
     postShape(newShape);
   };
