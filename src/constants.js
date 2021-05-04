@@ -5,3 +5,10 @@ export const shapes = {
   OVAL: "oval",
   RECTANGLE: "rectangle",
 };
+
+export const transforms = {
+  BEND: "bend",
+  BREAK: "break",
+  BLEND: "blend",
+  CLEAR: "clear",
+};
