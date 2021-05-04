@@ -2,8 +2,12 @@ import React from "react";
 import { Circle, Container, Oval, Rectangle, Square, Triangle } from "./styles";
 import { shapes } from "../../constants";
 
-const Element = ({ shape }) => (
-  <Container>
+const Element = ({ shape, addShape }) => (
+  <Container
+    onClick={() => {
+      addShape(shape);
+    }}
+  >
     {
       {
         [shapes.SQUARE]: <Square />,

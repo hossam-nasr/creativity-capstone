@@ -139,6 +139,19 @@ const MainScreen = () => {
     setRenderShapes([]);
   };
 
+  const addShape = (type) => {
+    const newShapes = [
+      ...renderShapes,
+      {
+        id: Math.floor(Math.random() * 1000000),
+        type,
+        x: Math.floor(Math.random() * 1420),
+        y: Math.floor(Math.random() * 920),
+      },
+    ];
+    setRenderShapes(newShapes);
+  };
+
   return (
     <Container>
       <Title>Bend, Break, Blend!</Title>
@@ -150,7 +163,11 @@ const MainScreen = () => {
         }}
       />
       <MainContainer>
-        <ElementSelector />
+        <ElementSelector
+          addShape={(type) => {
+            addShape(type);
+          }}
+        />
         <CanvasContainer>
           <Canvas
             renderShapes={renderShapes}
