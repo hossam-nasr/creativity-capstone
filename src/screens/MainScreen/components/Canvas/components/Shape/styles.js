@@ -8,37 +8,45 @@ export const Container = styled.div`
 `;
 
 export const Square = styled.div`
-  width: 50px;
+  transition: all 0.5s;
+  width: ${({ width }) => width}px;
   height: 50px;
   cursor: pointer;
-  background-color: red;
+  background-color: ${({ bent }) => (bent ? "green" : "red")};
 `;
 
 export const Triangle = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-
-  border-bottom: 50px solid yellow;
+  width: ${({ bent }) => (!bent ? 0 : 50)}px;
+  height: ${({ bent }) => (!bent ? 0 : 50)}px;
+  border-left: ${({ bent }) => (!bent ? "30px solid transparent" : "none")};
+  border-right: ${({ bent }) => (!bent ? "30px solid transparent" : "none")};
+  border-bottom: ${({ bent }) => (!bent ? "50px solid yellow" : "none")};
+  background-color: ${({ bent }) => (!bent ? "none" : "red")};
+  transition: all 0.5s;
 `;
 
 export const Rectangle = styled.div`
-  width: 70px;
-  height: 50px;
-  background-color: green;
+  width: ${({ bent }) => (bent ? 0 : 70)}px;
+  height: ${({ bent }) => (bent ? 0 : 50)}px;
+  border-left: ${({ bent }) => (bent ? "30px solid transparent" : "none")};
+  border-right: ${({ bent }) => (bent ? "30px solid transparent" : "none")};
+  border-bottom: ${({ bent }) => (bent ? "50px solid yellow" : "none")};
+  background-color: ${({ bent }) => (bent ? "none" : "green")};
+  transition: all 0.5s;
 `;
 
 export const Circle = styled.div`
-  width: 50px;
+  width: ${({ width }) => width}px;
+  transition: all 0.5s;
   height: 50px;
   border-radius: 50%;
-  background-color: purple;
+  background-color: ${({ bent }) => (bent ? "blue" : "purple")};
 `;
 
 export const Oval = styled.div`
-  width: 80px;
+  width: ${({ width }) => width}px;
   height: 50px;
+  transition: all 0.5s;
   border-radius: 50%;
-  background-color: blue;
+  background-color: ${({ bent }) => (bent ? "purple" : "blue")};
 `;
