@@ -53,7 +53,11 @@ const MainScreen = () => {
         break;
       }
       case shapes.TRIANGLE: {
-        shape.type = shapes.SQUARE;
+        shape.type = shapes.HEART;
+        break;
+      }
+      case shapes.HEART: {
+        shape.type = shapes.CIRCLE;
         break;
       }
       case shapes.CIRCLE: {
@@ -61,7 +65,7 @@ const MainScreen = () => {
         break;
       }
       case shapes.OVAL: {
-        shape.type = shapes.CIRCLE;
+        shape.type = shapes.SQUARE;
         break;
       }
       default:
@@ -80,6 +84,7 @@ const MainScreen = () => {
       [shapes.TRIANGLE]: 50,
       [shapes.OVAL]: 80,
       [shapes.CIRCLE]: 50,
+      [shapes.HEART]: 50,
     }[shape.type];
     const height = 50;
     if (shape.x >= 1500 - width) {

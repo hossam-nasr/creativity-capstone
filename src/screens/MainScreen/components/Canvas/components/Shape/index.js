@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Container, Square, Circle, Oval, Rectangle, Triangle } from "./styles";
+import {
+  Container,
+  Square,
+  Circle,
+  Oval,
+  Rectangle,
+  Triangle,
+  Heart,
+} from "./styles";
 import { shapes, transforms } from "../../../../../../constants";
 
 const Shape = ({
@@ -110,6 +118,28 @@ const Shape = ({
           ),
           [shapes.TRIANGLE]: (
             <Triangle
+              bent={bent}
+              onClick={() => {
+                switch (activeTransform) {
+                  case transforms.BEND:
+                    setBent(true);
+                    setTimeout(() => {
+                      bendShape(id);
+                      setBent(false);
+                    }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
+                  case transforms.BLEND:
+                    blendShape(id);
+                    break;
+                }
+              }}
+            />
+          ),
+          [shapes.HEART]: (
+            <Heart
               bent={bent}
               onClick={() => {
                 switch (activeTransform) {
