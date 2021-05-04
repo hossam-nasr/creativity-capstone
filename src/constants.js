@@ -4,6 +4,7 @@ export const shapes = {
   CIRCLE: "circle",
   OVAL: "oval",
   RECTANGLE: "rectangle",
+  HEART: "heart"
 };
 
 export const transforms = {

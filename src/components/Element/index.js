@@ -1,5 +1,13 @@
 import React from "react";
-import { Circle, Container, Oval, Rectangle, Square, Triangle } from "./styles";
+import {
+  Circle,
+  Container,
+  Oval,
+  Rectangle,
+  Square,
+  Triangle,
+  Heart,
+} from "./styles";
 import { shapes } from "../../constants";
 
 const Element = ({ shape, addShape }) => (
@@ -15,6 +23,7 @@ const Element = ({ shape, addShape }) => (
         [shapes.OVAL]: <Oval />,
         [shapes.RECTANGLE]: <Rectangle />,
         [shapes.TRIANGLE]: <Triangle />,
+        [shapes.HEART]: <Heart />,
       }[shape]
     }
   </Container>

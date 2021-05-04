@@ -76,3 +76,52 @@ export const Oval = styled.div`
     height: 56px;
   }
 `;
+
+export const Heart = styled.div`
+  background-color: pink;
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 40px;
+
+  transition: all 0.1s;
+
+  :before,
+  :after {
+    transition: all 0.1s;
+    content: "";
+    background-color: pink;
+    border-radius: 50%;
+    height: 40px;
+    position: absolute;
+    width: 40px;
+  }
+
+  :before {
+    top: -20px;
+    left: 0;
+  }
+
+  :after {
+    left: 20px;
+    top: 0;
+  }
+
+  :hover {
+    width: 50px;
+    height: 50px;
+    :before {
+      top: -25px;
+      width: 50px;
+      height: 50px;
+    }
+    :after {
+      left: 25px;
+      width: 50px;
+      height: 50px;
+    }
+  }
+`;
