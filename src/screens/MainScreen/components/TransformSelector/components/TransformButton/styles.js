@@ -24,6 +24,7 @@ export const IconContainer = styled.div`
 
   :hover {
     font-size: 30px;
+    color: #eeeeff;
   }
 `;
 

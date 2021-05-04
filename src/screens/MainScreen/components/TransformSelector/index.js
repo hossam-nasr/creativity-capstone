@@ -3,7 +3,7 @@ import { transforms } from "../../../../constants";
 import TransformButton from "./components/TransformButton";
 import { Container } from "./styles";
 
-const TransformSelector = ({ activeTransform, setActiveTransform }) => (
+const TransformSelector = ({ activeTransform, setActiveTransform, clear }) => (
   <Container>
     {Object.values(transforms).map((transform) => (
       <TransformButton
@@ -11,6 +11,9 @@ const TransformSelector = ({ activeTransform, setActiveTransform }) => (
         setActiveTransform={setActiveTransform}
         transform={transform}
         key={transform}
+        clear={() => {
+          clear();
+        }}
       />
     ))}
   </Container>

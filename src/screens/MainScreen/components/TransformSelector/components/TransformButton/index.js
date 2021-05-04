@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { transforms } from "../../../../../../constants";
 
-const TransformButton = ({ transform, active, setActiveTransform }) => (
+const TransformButton = ({ transform, active, setActiveTransform, clear }) => (
   <Container>
     <IconContainer
       active={active}
@@ -17,8 +17,7 @@ const TransformButton = ({ transform, active, setActiveTransform }) => (
         if (transform != transforms.CLEAR) {
           setActiveTransform(transform);
         } else {
-          console.log("Clear screen :(");
-          // TODO HERE
+          clear();
         }
       }}
     >

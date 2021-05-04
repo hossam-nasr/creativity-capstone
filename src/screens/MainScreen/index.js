@@ -134,12 +134,20 @@ const MainScreen = () => {
     setRenderLines(newLines);
   };
 
+  const clear = () => {
+    setRenderLines([]);
+    setRenderShapes([]);
+  };
+
   return (
     <Container>
       <Title>Bend, Break, Blend!</Title>
       <TransformSelector
         activeTransform={activeTransform}
         setActiveTransform={setActiveTransform}
+        clear={() => {
+          clear();
+        }}
       />
       <MainContainer>
         <ElementSelector />
