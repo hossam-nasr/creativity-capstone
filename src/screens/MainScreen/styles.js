@@ -37,3 +37,19 @@ export const Title = styled.div`
     font-size: 43px;
   }
 `;
+
+export const CanvasContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Canvas = styled.div`
+  width: 1500px;
+  height: 1000px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  margin-right: 150px;
+`;

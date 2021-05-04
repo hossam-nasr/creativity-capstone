@@ -1,7 +1,13 @@
 import React from "react";
 import ElementSelector from "./components/ElementSelector";
 import TransformSelector from "./components/TransformSelector";
-import { Container, MainContainer, Title } from "./styles";
+import {
+  Canvas,
+  CanvasContainer,
+  Container,
+  MainContainer,
+  Title,
+} from "./styles";
 
 const MainScreen = () => (
   <Container>
@@ -9,6 +15,9 @@ const MainScreen = () => (
     <TransformSelector />
     <MainContainer>
       <ElementSelector />
+      <CanvasContainer>
+        <Canvas />
+      </CanvasContainer>
     </MainContainer>
   </Container>
 );
