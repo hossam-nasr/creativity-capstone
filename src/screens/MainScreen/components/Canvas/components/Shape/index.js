@@ -29,6 +29,10 @@ const Shape = ({
                       bendShape(id);
                       setBent(false);
                     }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
                 }
               }}
             />
@@ -45,6 +49,10 @@ const Shape = ({
                       bendShape(id);
                       setBent(false);
                     }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
                 }
               }}
             />
@@ -61,6 +69,10 @@ const Shape = ({
                       bendShape(id);
                       setBent(false);
                     }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
                 }
               }}
             />
@@ -76,6 +88,10 @@ const Shape = ({
                       bendShape(id);
                       setBent(false);
                     }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
                 }
               }}
             />
@@ -91,6 +107,10 @@ const Shape = ({
                       bendShape(id);
                       setBent(false);
                     }, 500);
+                    break;
+                  case transforms.BREAK:
+                    breakShape(id);
+                    break;
                 }
               }}
             />

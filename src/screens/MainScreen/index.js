@@ -95,15 +95,15 @@ const MainScreen = () => {
     }[shape.type];
     const height = 50;
     if (shape.x >= 1500 - width) {
-      newShape.x -= width + 10;
+      newShape.x -= width + 5 + Math.floor(Math.random() * 10);
     } else {
-      newShape.x += width + 10;
+      newShape.x += width + 5 + Math.floor(Math.random() * 10);
     }
 
     if (shape.y >= 1000 - height) {
-      newShape.y -= height + 10;
+      newShape.y -= Math.floor(Math.random() * 10);
     } else {
-      newShape.y -= height + 10;
+      newShape.y += Math.floor(Math.random() * 10);
     }
     newShapes.push(newShape);
     setRenderShapes(newShapes);
