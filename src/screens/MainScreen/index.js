@@ -1,60 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { shapes, transforms } from "../../constants";
 import ElementSelector from "./components/ElementSelector";
 import TransformSelector from "./components/TransformSelector";
 import Canvas from "./components/Canvas";
 import { CanvasContainer, Container, MainContainer, Title } from "./styles";
-
-const initialShapes = [
-  {
-    id: 100,
-    type: shapes.SQUARE,
-    x: 20,
-    y: 500,
-  },
-  {
-    id: 102,
-    type: shapes.TRIANGLE,
-    x: 1000,
-    y: 800,
-  },
-  {
-    id: 500,
-    type: shapes.CIRCLE,
-    x: 300,
-    y: 500,
-  },
-  {
-    id: 501,
-    type: shapes.RECTANGLE,
-    x: 400,
-    y: 450,
-  },
-  {
-    id: 502,
-    type: shapes.OVAL,
-    x: 900,
-    y: 50,
-  },
-];
-
-const initialLines = [
-  {
-    id: 0,
-    from: 100,
-    to: 102,
-  },
-];
+import {
+  getLines,
+  getShapes,
+  modifyShape,
+  postShape,
+  setLinesListener,
+  setShapesListener,
+  postLine,
+  clearDb,
+} from "../../helpers";
+import { v4 as uuidv4 } from "uuid";
 
 const MainScreen = () => {
   const [activeTransform, setActiveTransform] = useState(transforms.BEND);
-  const [renderShapes, setRenderShapes] = useState(initialShapes);
-  const [renderLines, setRenderLines] = useState(initialLines);
+  const [renderShapes, setRenderShapes] = useState([]);
+  const [renderLines, setRenderLines] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const shapes = await getShapes();
+      setRenderShapes(shapes);
+    })();
+    (async () => {
+      const lines = await getLines();
+      setRenderLines(lines);
+    })();
+  }, []);
+
+  useEffect(() => {
+    setShapesListener((shapes) => {
+      setRenderShapes(shapes);
+    });
+    setLinesListener((lines) => {
+      setRenderLines(lines);
+    });
+  }, []);
 
   const bendShape = (id) => {
-    const newShapes = JSON.parse(JSON.stringify(renderShapes));
-    const shape = newShapes.find((item) => item.id == id);
-    console.log(shape.type);
+    const shape = renderShapes.find((item) => item.id == id);
     switch (shape.type) {
       case shapes.SQUARE: {
         shape.type = shapes.RECTANGLE;
@@ -79,14 +67,13 @@ const MainScreen = () => {
       default:
         break;
     }
-    setRenderShapes(newShapes);
+    modifyShape(id, shape.type);
   };
 
   const breakShape = (id) => {
-    const newShapes = JSON.parse(JSON.stringify(renderShapes));
-    const shape = newShapes.find((item) => item.id == id);
+    const shape = renderShapes.find((item) => item.id == id);
     const newShape = { ...shape };
-    newShape.id = Math.floor(Math.random() * 100000);
+    newShape.id = uuidv4();
     const width = {
       [shapes.RECTANGLE]: 70,
       [shapes.SQUARE]: 50,
@@ -106,8 +93,7 @@ const MainScreen = () => {
     } else {
       newShape.y += Math.floor(Math.random() * 10);
     }
-    newShapes.push(newShape);
-    setRenderShapes(newShapes);
+    postShape(newShape);
   };
 
   const blendShape = (id) => {
@@ -123,33 +109,26 @@ const MainScreen = () => {
       return distA - distB;
     });
     const closest = sorted[1];
-    const newLines = [
-      ...renderLines,
-      {
-        id: Math.floor(Math.random() * 100000),
-        from: shape.id,
-        to: closest.id,
-      },
-    ];
-    setRenderLines(newLines);
+    const newLine = {
+      id: uuidv4(),
+      from: shape.id,
+      to: closest.id,
+    };
+    postLine(newLine);
   };
 
   const clear = () => {
-    setRenderLines([]);
-    setRenderShapes([]);
+    clearDb();
   };
 
   const addShape = (type) => {
-    const newShapes = [
-      ...renderShapes,
-      {
-        id: Math.floor(Math.random() * 1000000),
-        type,
-        x: Math.floor(Math.random() * 1420),
-        y: Math.floor(Math.random() * 920),
-      },
-    ];
-    setRenderShapes(newShapes);
+    const newShape = {
+      id: uuidv4(),
+      type,
+      x: Math.floor(Math.random() * 1420),
+      y: Math.floor(Math.random() * 920),
+    };
+    postShape(newShape);
   };
 
   return (
