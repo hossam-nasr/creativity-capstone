@@ -16,9 +16,9 @@ export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: ${({ active }) => (active ? "30px" : "26px")};
   cursor: pointer;
-  color: #eeeeff;
+  color: ${({ active }) => (active ? "#eeeeff" : "#c9c9dd")};
 
   transition: 0.1s;
 
@@ -28,7 +28,8 @@ export const IconContainer = styled.div`
 `;
 
 export const Label = styled.div`
-  color: #eeeeff;
+  color: ${({ active }) => (active ? "#eeeeff" : "#c9c9dd")};
+  font-weight: ${({ active }) => (active ? "bold" : "normal")};
   font-family: Quicksand, Lato, sans-serif;
   font-size: 14px;
   padding-bottom: 5px;

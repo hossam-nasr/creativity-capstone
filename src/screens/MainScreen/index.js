@@ -1,5 +1,5 @@
-import React from "react";
-import { shapes } from "../../constants";
+import React, { useState } from "react";
+import { shapes, transforms } from "../../constants";
 import ElementSelector from "./components/ElementSelector";
 import TransformSelector from "./components/TransformSelector";
 import Canvas from "./components/Canvas";
@@ -20,17 +20,24 @@ const renderShapes = [
   },
 ];
 
-const MainScreen = () => (
-  <Container>
-    <Title>Bend, Break, Blend!</Title>
-    <TransformSelector />
-    <MainContainer>
-      <ElementSelector />
-      <CanvasContainer>
-        <Canvas renderShapes={renderShapes} />
-      </CanvasContainer>
-    </MainContainer>
-  </Container>
-);
+const MainScreen = () => {
+  const [activeTransform, setActiveTransform] = useState(transforms.BEND);
+
+  return (
+    <Container>
+      <Title>Bend, Break, Blend!</Title>
+      <TransformSelector
+        activeTransform={activeTransform}
+        setActiveTransform={setActiveTransform}
+      />
+      <MainContainer>
+        <ElementSelector />
+        <CanvasContainer>
+          <Canvas renderShapes={renderShapes} />
+        </CanvasContainer>
+      </MainContainer>
+    </Container>
+  );
+};
 
 export default MainScreen;

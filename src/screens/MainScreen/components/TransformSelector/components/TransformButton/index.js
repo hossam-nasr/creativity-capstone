@@ -9,9 +9,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { transforms } from "../../../../../../constants";
 
-const TransformButton = ({ transform }) => (
+const TransformButton = ({ transform, active, setActiveTransform }) => (
   <Container>
-    <IconContainer>
+    <IconContainer
+      active={active}
+      onClick={() => {
+        if (transform != transforms.CLEAR) {
+          setActiveTransform(transform);
+        } else {
+          console.log("Clear screen :(");
+          // TODO HERE
+        }
+      }}
+    >
       <FontAwesomeIcon
         icon={
           {
@@ -23,7 +33,7 @@ const TransformButton = ({ transform }) => (
         }
       />
     </IconContainer>
-    <Label>
+    <Label active={active}>
       {
         {
           [transforms.BEND]: "Bend",
